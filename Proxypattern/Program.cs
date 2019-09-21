@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Proxypattern
@@ -11,101 +13,161 @@ namespace Proxypattern
         static void Main(string[] args)
         {
             BlogProxy proxy = new BlogProxy();
-            Console.WriteLine("Enter password to enter this blog");
-            proxy.authenticate(Console.ReadLine());
-            Console.ReadLine();
+            while (proxy.isRunning)
+            {
+                proxy.update();
+            }
         }
     }
 
     public interface IBlog
     {
-        void addPost(string post);
-        List<string> getBlogPosts();
+        void AddPost(string post);
+        void PrintBlogPosts();
     }
 
     public class BlogProxy : IBlog
     {
         private RealBlog _realBlog;
         private string _password;
+        private bool _isAuthenticated;
+        public bool isRunning;
 
         public BlogProxy()
         {
-            Console.WriteLine("Proxy instantiated");
             _password = "donderdag";
+            _isAuthenticated = false;
+            isRunning = true;
+            Print("Proxy instantiated...");
+            authenticate();
         }
 
-        public bool authenticate(string password)
+        private void authenticate()
         {
-            if(password == _password)
+            Print("Enter password to enter this blog");
+            while (!_isAuthenticated)
             {
-                Console.WriteLine("Password correct!");
-                _realBlog = new RealBlog();
-                return true;
-            } else
-            {
-                Console.WriteLine("Password incorrect try again...");
-                return false;
+                if (Console.ReadLine() == _password)
+                {
+                    Print("Password correct!");
+                    _realBlog = new RealBlog();
+                    _isAuthenticated = true;
+                }
+                else
+                {
+                    Print("Password incorrect try again...");
+                }
             }
         }
 
-        public void addPost(string post)
+        
+
+        public void update()
         {
-            if(_realBlog == null)
+            Print("So what's your next step? Type 'p' to add a new post, 'r' to read all your saved posts or 'q' to quit.");
+            string currentCommand = Console.ReadLine().ToLower();
+            doAction(currentCommand);
+        }
+
+        public void doAction(string command)
+        {
+
+            if (command == "p")
             {
+                Print("Type in your blogtext here:");
+                AddPost(Console.ReadLine());
                 return;
             }
-            _realBlog.addPost(post);
+            if (command == "r")
+            {
+                PrintBlogPosts();
+                return;
+            }
+            if (command == "q")
+            {
+                isRunning = false;
+                return;
+            }
         }
 
-        public List<string> getBlogPosts()
+        public void AddPost(string post)
         {
             if (_realBlog == null)
             {
-                return null;
-            } 
-            return _realBlog.getBlogPosts();
+                return;
+            }
+            _realBlog.AddPost(post);
+        }
+
+        public void PrintBlogPosts()
+        {
+            if (_realBlog == null)
+            {
+                return;
+            }
+            _realBlog.PrintBlogPosts();
+        }
+
+        public void Print(string p)
+        {
+            string dateTime = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+            Console.WriteLine(dateTime + ": " + p);
         }
     }
 
     public class RealBlog : IBlog
     {
-        private List<String> _blogPosts;
+        private List<string> _blogPosts;
         private bool _isAuthenticated;
 
         public RealBlog()
         {
+            _blogPosts = new List<string>();
             _isAuthenticated = false;
-            Console.WriteLine("RealBlog instantiated");
+            Print("RealBlog instantiated...");
         }
 
         public void getBlog()
         {
             if (_isAuthenticated)
             {
-                Console.WriteLine("First blog, yaay!");
-            } else
+                Print("First blog, yaay!");
+            }
+            else
             {
-                Console.WriteLine("Not authenticated");
+                Print("Not authenticated");
             }
         }
 
-        public void addPost(string post)
+        public void AddPost(string post)
         {
             if (post != null)
             {
-                this._blogPosts.Add(post);
+                _blogPosts.Add(post);
+                Print("Blogpost '" + post + "' is succesfully added to your blog.");
             }
         }
 
-        public List<string> getBlogPosts()
+        public void PrintBlogPosts()
         {
-            if(this._blogPosts != null)
+            if (_blogPosts != null)
             {
-                return this._blogPosts;
-            } else
-            {
-                return new List<string>();
+                Print("Your blogposts will be printed now...");
+                foreach (string item in _blogPosts)
+                {
+                    Print(item);
+                    Thread.Sleep(500);
+                }
+                Print("--- END ---");
             }
         }
+
+        public void Print(string p)
+        {
+            string dateTime = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+            Console.WriteLine(dateTime + ": " + p);
+        }
     }
+    
 }
+
