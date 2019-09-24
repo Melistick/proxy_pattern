@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Proxypattern")]
+[assembly: AssemblyTitle("ProxyPattern_2")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("HP Inc.")]
-[assembly: AssemblyProduct("Proxypattern")]
+[assembly: AssemblyProduct("ProxyPattern_2")]
 [assembly: AssemblyCopyright("Copyright © HP Inc. 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c19c48d1-75da-4226-ae3c-d18d4ab1059a")]
+[assembly: Guid("280efa74-d70c-4dc4-9c8c-8be88fb4346a")]
 
 // Version information for an assembly consists of the following four values:
 //
