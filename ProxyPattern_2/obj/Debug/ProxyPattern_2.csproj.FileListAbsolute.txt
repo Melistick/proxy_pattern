@@ -5,3 +5,10 @@ C:\Users\Melissa Landwerd\source\repos\ProxyPattern_2\ProxyPattern_2\obj\Debug\P
 C:\Users\Melissa Landwerd\source\repos\ProxyPattern_2\ProxyPattern_2\obj\Debug\ProxyPattern_2.csproj.CoreCompileInputs.cache
 C:\Users\Melissa Landwerd\source\repos\ProxyPattern_2\ProxyPattern_2\obj\Debug\ProxyPattern_2.exe
 C:\Users\Melissa Landwerd\source\repos\ProxyPattern_2\ProxyPattern_2\obj\Debug\ProxyPattern_2.pdb
+C:\Users\jk0094595\Documents\Source\Repos\proxy_pattern\ProxyPattern_2\bin\Debug\ProxyPattern_2.exe.config
+C:\Users\jk0094595\Documents\Source\Repos\proxy_pattern\ProxyPattern_2\bin\Debug\ProxyPattern_2.exe
+C:\Users\jk0094595\Documents\Source\Repos\proxy_pattern\ProxyPattern_2\bin\Debug\ProxyPattern_2.pdb
+C:\Users\jk0094595\Documents\Source\Repos\proxy_pattern\ProxyPattern_2\obj\Debug\ProxyPattern_2.csprojAssemblyReference.cache
+C:\Users\jk0094595\Documents\Source\Repos\proxy_pattern\ProxyPattern_2\obj\Debug\ProxyPattern_2.csproj.CoreCompileInputs.cache
+C:\Users\jk0094595\Documents\Source\Repos\proxy_pattern\ProxyPattern_2\obj\Debug\ProxyPattern_2.exe
+C:\Users\jk0094595\Documents\Source\Repos\proxy_pattern\ProxyPattern_2\obj\Debug\ProxyPattern_2.pdb
