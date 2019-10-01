@@ -11,7 +11,7 @@ namespace ProxyPattern_2
         public RealBlog()
         {
             _blogPosts = new List<string>();
-            Print("RealBlog instantiated...");
+            Format("RealBlog instantiated...");
         }
 
         public void AddPost(string post)
@@ -19,28 +19,42 @@ namespace ProxyPattern_2
             if (post != null)
             {
                 _blogPosts.Add(post);
-                Print("Blogpost '" + post + "' is succesfully added to your blog.");
+                Format("Blogpost '" + post + "' is succesfully added to your blog.");
             }
+        }
+
+        public string GetBlogPosts()
+        {
+            if (_blogPosts != null)
+            {
+                string output = Format("--- START --- \r\n");
+                foreach (string item in _blogPosts)
+                {
+                    output += Format(item);
+                    output += "\r\n";
+                    Thread.Sleep(500);
+                }
+                output += Format("--- END ---");
+                return output;
+            }
+
+            return Format("There are nog BlogPosts yet!");
         }
 
         public void PrintBlogPosts()
         {
             if (_blogPosts != null)
             {
-                Print("Your blogposts will be printed now...");
-                foreach (string item in _blogPosts)
-                {
-                    Print(item);
-                    Thread.Sleep(500);
-                }
-                Print("--- END ---");
+                Console.WriteLine("Your blogposts will be printed now...");
+                Console.WriteLine(GetBlogPosts());
             }
         }
 
-        public void Print(string p)
+        public string Format(string p)
         {
             string dateTime = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            Console.WriteLine(dateTime + ": " + p);
+            return dateTime + ": " + p;
         }
+
     }
 }

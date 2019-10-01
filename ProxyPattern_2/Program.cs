@@ -10,10 +10,20 @@ namespace ProxyPattern_2
     {
         static void Main(string[] args)
         {
+            //Open new blog
             BlogProxy proxy = new BlogProxy();
+
+            //Start authentication
+            while (proxy.GetIsAuthenticated() == false)
+            {
+                proxy.Print("Enter password to enter this blog");
+                proxy.Authenticate(Console.ReadLine());
+            }
+
+            //Ask for input
             while (proxy.isRunning)
             {
-                proxy.update();
+                proxy.Update();
             }
         }
     }
